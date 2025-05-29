@@ -4,8 +4,8 @@ from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from easyrag.pipeline.pipeline import EasyRAGPipeline
-from easyrag.utils import get_yaml_data
+from src.easyrag.pipeline.pipeline import EasyRAGPipeline
+from src.easyrag.utils import get_yaml_data
 
 
 class QueryRequest(BaseModel):
