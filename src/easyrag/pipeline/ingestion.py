@@ -71,6 +71,8 @@ def get_node_content(node: NodeWithScore, embed_type=0, nodes: list[TextNode] = 
     elif embed_type == 5:
         if 'know_path' in node.metadata:
             text = node.metadata['know_path']
+        elif 'file_path' in node.metadata:
+            text = node.metadata['file_path']
         else:
             text = ""
     return text

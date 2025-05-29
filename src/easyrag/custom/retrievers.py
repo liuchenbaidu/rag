@@ -114,7 +114,7 @@ class BM25Retriever(BaseRetriever):
             doc_name = node.metadata.get('file_name', 'Unknown file')
             page_label = node.metadata.get('page_label', 'N/A')
             
-            content = get_node_content(node, self.embed_type)
+            content = get_node_content(NodeWithScore(node=node), self.embed_type)
             if not content:
                 logger.warning(f"Empty content in node {i}")
                 logger.warning(f"Document: {doc_path}")

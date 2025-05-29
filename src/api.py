@@ -32,7 +32,7 @@ def create_app() -> FastAPI:
     return app
 
 
-config_path = "configs/easyrag.yaml"
+config_path = "src/configs/easyrag.yaml"
 config = get_yaml_data(config_path)
 easyrag = EasyRAGPipeline(config)
 
