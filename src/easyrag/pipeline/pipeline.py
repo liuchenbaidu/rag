@@ -174,7 +174,7 @@ class EasyRAGPipeline:
             print(f"创建{embedding_name}密集检索器成功")
 
         # 加载稀疏检索
-        self.stp_words = load_stopwords("src/data/hit_stopwords.txt")
+        self.stp_words = load_stopwords("../data/hit_stopwords.txt")
         import jieba
         self.sparse_tk = jieba.Tokenizer()
         if split_type == 1:

@@ -23,7 +23,7 @@ bm25_type: 0 # 0-->官方实现 1-->bm25s实现，速度更快
 # 重排器参数
 r_topk: 6 # 精排topk
 r_topk_1: 6 # 精排后Fusion的topk
-reranker_name: models/bge-reranker-v2-minicpm-layerwise
+reranker_name: ../models/bge-reranker-v2-minicpm-layerwise
 use_reranker: 2 # 0-->不使用 1-->ST的普通Reranker 2-->bge LLM Reranker
 r_embed_bs: 32
 r_use_efficient: 0 # 0-->不加速 1-->使用最大值选择方法加速 2-->使用熵选择方法加速
@@ -48,7 +48,7 @@ chunk_overlap: 200
 
 # 路径参数
 # data_path: "../data/format_data_with_img"
-data_path: "data/赛题制度文档"
+data_path: "../data/赛题制度文档"
 hfmodel_cache_folder: "../../../../hf_cache/hub"
 qdrant_url: "http://localhost:6333"
 
