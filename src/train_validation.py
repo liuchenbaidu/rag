@@ -191,12 +191,33 @@ async def main(
             # 计算该条数据的准确性
             is_correct = calculate_accuracy(answer, query['answer'], query['category'])
             
+            # 清理predicted_answer中的转义字符
+            cleaned_answer = answer
+            if query['category'] == "选择题":
+                # 如果是选择题，尝试解析并清理答案格式
+                try:
+                    # 移除可能的转义字符
+                    if cleaned_answer.startswith('"') and cleaned_answer.endswith('"'):
+                        cleaned_answer = cleaned_answer[1:-1]  # 移除外层引号
+                    cleaned_answer = cleaned_answer.replace('\\"', '"')  # 移除转义字符
+                    
+                    # 尝试解析为JSON以验证格式
+                    import json as json_module
+                    try:
+                        parsed = json_module.loads(cleaned_answer)
+                        if isinstance(parsed, list):
+                            cleaned_answer = parsed  # 直接使用解析后的列表
+                    except:
+                        pass  # 如果解析失败，保持原样
+                except:
+                    pass  # 如果处理失败，保持原样
+            
             inter_res = {
                 "id": query['id'],
                 "category": query['category'],
                 "query": query['query'],
                 "content": query.get('content', ''),
-                "predicted_answer": answer,
+                "predicted_answer": cleaned_answer,
                 "ground_truth": query['answer'],
                 "is_correct": is_correct,
                 "candidates": contexts,
